@@ -235,10 +235,21 @@ class Dog2 extends Animal {
     }
 }
 
-const myDog = new Dog2();
-myDog.makeSound();
-myDog.move();
+// const myDog = new Dog2();
+// myDog.makeSound();
+// myDog.move();
 
+
+interface Logger {
+  log(message: string): void;
+}
+class ConsoleLogger implements Logger {
+  log(msg: string) {
+    console.log(msg);
+  }
+}
+const logger: Logger = new ConsoleLogger();
+logger.log("Hello, Logger!");
 
 
 
