@@ -81,6 +81,60 @@ const names = ['Alice', 'Bob', '_Charlie'];
 
 // console.log(new Number(5) instanceof Number);
 
+let reponse: string | number = "20";
+
+if (typeof reponse === "string") {
+    // reponse = new String(reponse).toString(); 
+    console.log((reponse as string).toUpperCase());
+} else {
+    console.log((reponse as number).toFixed(2));
+}
+
+type Cat = {
+    meow: () => void;
+    name: string;
+};
+
+type Dog = {
+    bark: () => void;
+    name: string;
+};
+
+function isCat(animal: Cat | Dog): animal is Cat {
+    return (animal as Cat).meow !== undefined;
+}
+
+function makeSound(animal: Cat | Dog) {
+    if (isCat(animal)) {
+        animal.meow();
+    } else {
+        animal.bark();
+    }
+}
+
+const pet1: Cat = {
+    meow: () => console.log("Meow!"),
+    name: "Whiskers"
+};
+
+const pet2: Dog = {
+    bark: () => console.log("Woof!"),
+    name: "Rex"
+};
+
+function makeSound2(animal: Cat | Dog) {
+    if((animal as Cat).meow) {
+        (animal as Cat).meow();
+    } else {
+        (animal as Dog).bark();
+    }
+}
+
+// makeSound2(pet1);
+
+const value: unknown = "Hello, World!";
+console.log((value as string).toUpperCase());
+
 
 
 
