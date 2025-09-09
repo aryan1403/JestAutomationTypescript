@@ -1,88 +1,89 @@
-// let --> value can be reassigned
-let a: number = 5;
-a = 10;
-// const --> value cannot be reassigned
-const pi: number = 3.14;
-// pi = 3.15; // This will cause an error
-let b: number = 10;
-let message: string = "Hello, TypeScript!";
-let isActive: boolean = true;
-let list: number[] = [1, 2, 3, 4, 5];
+const point = { x: 1, y: 2, z: 3 };
+let a = point.x;
+let b = point.y;
 
-// console.log(`The sum of a and b is: ${a + b}`);
-// console.log(message);
-// console.log(`Is active: ${isActive}`);
-// console.log(`List: ${list}`);
+const {x, z} = point;
 
-// Union type example
-let x: number | string | boolean = 100;
-x = "Now I'm a string";
-x = true;
+[a, b] = [b, a]; // swap values
+// console.log(a, b);
 
-// console.log(`Value of x: ${x}`);
 
-// Any type example
-let y: any = 50;
-y = "Now I'm a string";
-y = false;
-y = [1,23,4];
+// console.log(x, y);
 
-// console.log(`Value of y: ${y}`);
+// Complex destructuring example
+// const {
+//  user: { profile: { name, email } },
+//  settings: { theme = 'light', ...otherSettings }
+// } = apiResponse;
 
-// type assertion example
-let z = y as number;
-z = 200;
-// console.log(`Value of z: ${z}`);
-
-let obj = {
-    name: "Aaryan",
-    role: "Trainer",
-    salary: 50000,
-    exp: 10
+const user = {
+    id: 1,
+    name: 'John Doe',
+    address: {
+        street: '123 Main St',
+        city: 'Anytown',
+        country: 'USA'
+    }
 }
 
-// console.log(obj);
+const { address: { city, country }, ...others } = user;
+// console.log(city, country, others);
 
-// object types
-let emp: { name: string, role: string, salary: number, exp?: number } = {
-    name: "Aaryan",
-    role: "Trainer",
-    salary: 50000
+// Rest operator in array destructuring
+const arr = [1, 2, 3, 4, 5];
+
+const [first, second, third, ...anything] = arr;
+// console.log(first, second, third, anything);
+
+function sum(...numbers: number[]): number {
+ let res = 0;
+    for (const num of numbers) {
+        res += num;
+    }
+    return res;
 }
 
-// console.log(emp);
+// console.log(sum(1, 2, 3));
 
-// interfaces
-interface Employee {
-    name: string;
-    role: string;
-    salary: number;
-    exp?: number; // optional property
+
+// type off
+
+let num = "true";
+
+// if (typeof num === "string") { num = num.toUpperCase()}
+
+// console.log(num);
+if(10 in arr) {
+    console.log("yes");
 }
 
-let emp1: Employee = {
-    name: "Aaryan",
-    role: "Trainer",
-    salary: 50000,
-    exp: 10
+// Real world use case
+
+const apiResponse = {
+    status: 'success',
+    code: 200,
+    data: {
+        apiString: 'some data',
+    }
 }
 
-let val: unknown = 5; // not disable type checking
-val = "Now I'm a string";
-
-if (typeof val === "string") {
-    console.log(`String length is ${val.length}`);
+if(apiResponse.data.apiString in apiResponse.data) {
+    // execute operations
 }
 
+// class Person {}
+// class Employee extends Person {}
+// const alice = new Person();
 
-let val1: any = 10; // disable type checking
-val1 = "Now I'm a string";
+// console.log(alice instanceof Employee);
 
-if (typeof val1 === "string") {
-    console.log(`String length is ${val1.length}`);
-} else {
-    // This will not cause a compile-time error, but may cause a runtime error if val1 is not a string
-    console.log(`String length is ${val1.length}`); // Potential runtime error
-}
+const names = ['Alice', 'Bob', '_Charlie'];
+
+// console.log(new Number(5) instanceof Number);
+
+
+
+
+
 
 
