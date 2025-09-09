@@ -136,6 +136,108 @@ const value: unknown = "Hello, World!";
 console.log((value as string).toUpperCase());
 
 
+type User = {
+    id: number;
+    name: string;
+    email?: string;
+}
+
+// console.log(({ id: 2, name: 'Aaryan'} as User).email!.toLowerCase());
+
+// Inheritance
+class Car {
+    name: string;
+    constructor(name: string) {
+        this.name = name;
+    }
+    start() {
+        console.log(`${this.name} started.`);
+    }
+}
+
+class Engine extends Car {
+    constructor(name: string) {
+        super(name);
+    }
+    start() {
+        super.start();
+        console.log(`${this.name} engine is running.`);
+    }
+}
+
+// const myCar = new Car('X1'); 
+// const myEngine = new Engine('V8');   
+// myEngine.start();
+
+// Encapsulation
+class BankAccount {
+    private balance: number;
+    constructor(initialBalance: number) {
+        this.balance = initialBalance;
+    }
+
+    deposit(amount: number): void {
+        if (amount > 0) {
+            this.balance += amount;
+        }
+    }
+
+    withdraw(amount: number): boolean {
+        if (amount > 0 && amount <= this.balance) {
+            this.balance -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    getBalance(): number {
+        return this.balance;
+    }
+}
+
+// const aryanAccount = new BankAccount(1000);
+// aryanAccount.deposit(500);
+// aryanAccount.withdraw(200);
+// console.log(aryanAccount.getBalance());
+
+
+// Polymorphism
+class Shape {
+    area(): number {
+        return 0;
+    }
+}
+
+class Rectangle extends Shape {
+    constructor(private width: number, private height: number) {
+        super();
+    }
+    area(): number {
+        return this.width * this.height;
+    }
+}
+
+// const myRect = new Rectangle(5, 10);
+// console.log(myRect.area());
+
+// Abstraction
+abstract class Animal {
+    abstract makeSound(): void;
+
+    move(): void {
+        console.log("Moving...");
+    }
+}
+
+class Dog2 extends Animal {
+    makeSound(): void {
+        console.log("Woof! Woof!");
+    }
+}
+
+const myDog = new Dog2();
+myDog.makeSound();
+myDog.move();
 
 
 
